@@ -1,0 +1,14 @@
+[package]
+name = "esp32-udp-monitor"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+sysinfo = { version = "0.35.1", default-features = false, features = ["windows", "system", "network"] }
+
+[profile]
+dev = { opt-level = 3 }
+release = { opt-level = 3, lto = true, codegen-units = 1, panic = "abort" }
+minimal = { inherits = "release", opt-level = "z", lto = true, codegen-units = 1, panic = "abort", debug = false }
